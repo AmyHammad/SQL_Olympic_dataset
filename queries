@@ -1,18 +1,28 @@
+-- ===========================================
+-- OLYMPICS SQL ANALYSIS PROJECT
+-- ===========================================
+-- This file contains questions and answers in SQL
+-- Dataset: athlete_events + noc_regions 
+-- ===========================================
 
--- Question: Which year saw the highest and lowest number of countries participating?
--- Step 1: Count distinct countries per Olympic year
-WITH country_participation AS (
-    SELECT
-        year,
-        COUNT(DISTINCT noc) AS num_countries
-    FROM athlete_events
-    GROUP BY year
-)
--- Step 2: Select min and max
-SELECT TOP 1 year, num_countries
-FROM country_participation
-ORDER BY num_countries ASC;  -- lowest
 
-SELECT TOP 1 year, num_countries
-FROM country_participation
-ORDER BY num_countries DESC; -- highest
+-- Q1: How many Olympic Games have been held?
+
+SELECT COUNT(DISTINCT games) AS Total_Olympics
+FROM athlete_events;
+
+
+-- Q2: List down all Olympic Games held so far.
+-- Each unique (year, season, city) is one Olympic edition.
+SELECT DISTINCT year, season, city
+FROM athlete_events
+ORDER BY year;
+
+
+-- Q3: Mention the total no. of nations that participated in each Olympic game?
+
+SELECT games, COUNT(DISTINCT team) AS Total_no_of_Nations
+FROM athlete_events
+GROUP BY games
+ORDER BY games
+
