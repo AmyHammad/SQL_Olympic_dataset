@@ -54,5 +54,37 @@ FROM athlete_events
 WHERE season = 'Summer'
 GROUP BY sport
 HAVING COUNT(DISTINCT games) = (
-    SELECT COUNT(DISTINCT games) FROM athlete_events WHERE season = 'Summer'
-);
+    SELECT COUNT(DISTINCT games) FROM athlete_events WHERE season = 'Summer');
+
+
+-- Q7: Which Sports were played only once in the Olympics?
+
+SELECT sport, COUNT(DISTINCT games) AS no_of_games
+FROM athlete_events
+GROUP BY sport
+HAVING COUNT(DISTINCT games) = 1;
+
+-- Q8: Fetch the total no of sports played in each Olympic games.
+
+SELECT games, COUNT(DISTINCT sport) AS Total_sports
+FROM athlete_events
+GROUP BY games
+ORDER BY games;
+
+
+-- Q9: Fetch details of the oldest athletes to win a gold medal.
+
+SELECT name, sex, age, team, games, sport, event, medal
+FROM athlete_events
+WHERE medal = 'GOLD'
+    AND age = (SELECT MAX(age) FROM athlete_events WHERE medal = 'Gold');
+
+
+-- Q10: Find the ratio of male and female athletes who participated in all Olympic Games.
+-- Step 1: Count distinct athletes by gender (using "id" as unique athlete identifier).
+-- Step 2: Calculate ratio (M/F) and percentages for clarity.
+
+
+
+
+
