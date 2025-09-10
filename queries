@@ -26,3 +26,33 @@ FROM athlete_events
 GROUP BY games
 ORDER BY games
 
+
+-- Q4: Which year saw the highest and lowest no of countries participating in Olympics?
+
+SELECT TOP 1 games, COUNT(DISTINCT noc) AS total_nations
+FROM athlete_events
+GROUP BY games
+ORDER BY total_nations DESC;
+
+SELECT TOP 1 games, COUNT(DISTINCT noc) AS total_nations
+FROM athlete_events
+GROUP BY games
+ORDER BY total_nations ASC;
+
+
+-- Q5: Which nation has participated in all of the Olympic games?
+
+SELECT noc, COUNT(DISTINCT games) AS games_participated
+FROM athlete_events
+GROUP BY noc
+HAVING COUNT(DISTINCT games) = (SELECT COUNT(DISTINCT games) FROM athlete_events);
+
+
+-- Q6: Identify the sport which was played in all Summer Olympics.
+SELECT sport
+FROM athlete_events
+WHERE season = 'Summer'
+GROUP BY sport
+HAVING COUNT(DISTINCT games) = (
+    SELECT COUNT(DISTINCT games) FROM athlete_events WHERE season = 'Summer'
+);
