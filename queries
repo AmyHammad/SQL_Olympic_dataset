@@ -83,6 +83,29 @@ WHERE medal = 'GOLD'
 -- Q10: Find the ratio of male and female athletes who participated in all Olympic Games.
 -- Step 1: Count distinct athletes by gender (using "id" as unique athlete identifier).
 -- Step 2: Calculate ratio (M/F) and percentages for clarity.
+-- WITH cte_name AS (
+          SELECT ...
+          FROM ...
+          WHERE ...
+    )
+    SELECT *
+    FROM cte_name
+    WHERE ...
+
+
+WITH gender_counts AS (
+    SELECT 
+        COUNT(DISTINCT CASE WHEN sex = 'M' THEN id END) AS male_count,
+        COUNT(DISTINCT CASE WHEN sex = 'F' THEN id END) AS female_count
+    FROM athlete_events
+)
+
+
+
+
+
+
+
 
 
 
