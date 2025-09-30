@@ -100,7 +100,13 @@ WITH gender_counts AS (
     FROM athlete_events
 )
 
-
+SELECT
+    male_count,
+    female_count,
+    ROUND(male_count * 1.0 / NULLIF(female_count, 0), 2) AS male_to_female_ratio,
+    ROUND(100.0 * male_count / NULLIF(male_count + female_count, 0), 2) AS pct_male,
+    ROUND(100.0 * female_count / NULLIF(male_count + female_count, 0), 2) AS pct_female
+FROM gender_counts;
 
 
 
