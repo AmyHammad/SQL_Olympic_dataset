@@ -125,7 +125,9 @@ LIMIT 5;
 
 
 --Q12: Fetch the top 5 athletes who have won the most medals (gold/silver/bronze).
-
+-- Step 1: Filter dataset to include only rows where Medal is not NULL.
+-- Step 2: Group by athlete name and count total medals won (any type).
+-- Step 3: Order the result by medal count (descending) and select top 5.
 
 SELECT name AS athlete_name,
        COUNT(*) AS total_medals
