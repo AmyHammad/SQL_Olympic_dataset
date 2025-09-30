@@ -127,7 +127,13 @@ LIMIT 5;
 --Q12: Fetch the top 5 athletes who have won the most medals (gold/silver/bronze).
 
 
-
+SELECT name AS athlete_name,
+       COUNT(*) AS total_medals
+FROM athlete_events
+WHERE medal IS NOT NULL
+GROUP BY name
+ORDER BY total_medals DESC
+LIMIT S;
 
 
 
