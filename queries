@@ -138,7 +138,7 @@ ORDER BY total_medals DESC
 LIMIT S;
 
 
---Q13: Find the top 5 most successful countries in Olympics. Success is defined by no of medals won.
+
 
 
 
